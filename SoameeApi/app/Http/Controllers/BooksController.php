@@ -18,17 +18,6 @@ class BooksController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @param  \App\Models\Books  $books
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -36,7 +25,15 @@ class BooksController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $books = new Books();
+
+        $books->name = $request->name;
+
+        $books->isbn = $request->isbn;
+
+        $books->author_id = $request->author_id;
+
+        $books->save();
     }
 
     /**
