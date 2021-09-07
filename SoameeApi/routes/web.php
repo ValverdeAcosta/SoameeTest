@@ -21,3 +21,6 @@ Route::get('/books', [App\Http\Controllers\BooksController::class, 'show']);
 Route::get('/book/{id}', [App\Http\Controllers\BooksController::class, 'filter']);
 Route::get('/authors', [App\Http\Controllers\AuthorsController::class, 'show']);
 Route::get('/author/{id}', [App\Http\Controllers\AuthorsController::class, 'filter']);
+
+Route::post('/author', [App\Http\Controllers\AuthorsController::class, 'store']);
+Route::post('/book', [App\Http\Controllers\BooksController::class, 'store']);
