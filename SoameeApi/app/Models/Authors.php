@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use DB;
 
 class Authors extends Model
 {
@@ -20,4 +21,16 @@ class Authors extends Model
         'first_name',
         'last_name'
     ];
+
+    public function getAll() 
+    {
+        return DB::table('authors')->get();
+    }
+
+    public function getThisAuthor($id) 
+    {
+        return DB::table('authors')
+            ->where('id', $id)
+            ->get();
+    }
 }

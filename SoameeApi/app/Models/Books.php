@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use DB;
 
 class Books extends Model
 {
@@ -21,4 +22,22 @@ class Books extends Model
         'isbn',
         'authors_id'
     ];
+
+    public function getAll() 
+    {
+        return DB::table('books')->get();
+    }
+
+    public function getThisBook($id) 
+    {
+        $thisBook = DB::table('books')
+            ->where('id', $id)
+            ->get();
+
+        $hisAuthor = DB::table('authors')
+            ->where('id',$thisBook[0]->author_id)
+            ->get();
+
+        return ["book" => $thisBook, "author" => $hisAuthor];
+    }
 }
