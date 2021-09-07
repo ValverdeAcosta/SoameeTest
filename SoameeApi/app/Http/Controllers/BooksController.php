@@ -20,11 +20,12 @@ class BooksController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @param  \App\Models\Books  $books
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -46,7 +47,18 @@ class BooksController extends Controller
      */
     public function show(Books $books)
     {
-        //
+        return json_encode($books->getAll());
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Books  $books
+     * @return \Illuminate\Http\Response
+     */
+    public function filter(Books $books, Request $request)
+    {
+        return json_encode($books->getThisBook($request->id));
     }
 
     /**
