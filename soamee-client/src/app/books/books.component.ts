@@ -1,15 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
-export class Books {
-  constructor(
-    public id: number,
-    public name: string,
-    public isbn: string,
-    public author_id: number
-  )
-  {}
-}
+import { FormsModule } from "@angular/forms";
 
 @Component({
   selector: 'app-books',
@@ -17,14 +8,16 @@ export class Books {
   styleUrls: ['./books.component.css']
 })
 
+
 export class BooksComponent implements OnInit {
 
   public books:any[] = [];
   public authors:any[] = [];
   public book:any[] = [];
 
+
   constructor(
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
   )
   { 
   }
@@ -42,26 +35,20 @@ export class BooksComponent implements OnInit {
     );
   }
 
-  getAll(data:any) {
-    const bookList:Object|any = document.getElementById('bookList');
-
-    data.forEach(function(value:Object|any){
-      const list=document.createElement('li');
-      const a=document.createElement('a');
-      a.setAttribute('onclick', 'getAllDataFromBook('+value.id+')');
-      list.appendChild(a);
-      a.appendChild(document.createTextNode(value.name));
-      bookList.appendChild(list);
-    });
-  }
-
   getAllDataFromBook(value:any) {
-  this.httpClient.get<any>(this.apiPath+'book/'+value).subscribe(
-    response => {
-      this.book = response.book;
-      this.authors = response.author;
-    }
-  );
+    this.httpClient.get<any>(this.apiPath+'book/'+value).subscribe(
+      response => {
+        this.book = response.book;
+        this.authors = response.author;
+      }
+    );
   }
 
+  addBook(value:any) {
+    this.httpClient.post<any>(this.apiPath+'book/', value).subscribe(
+      response => {
+        console.log(response);
+      }
+    );
+  }
 }

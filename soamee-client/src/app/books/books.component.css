@@ -3,3 +3,8 @@
     border: 1px solid black;
     cursor: pointer;
 }
+
+.bookNames:hover {
+    border: solid goldenrod 1px;
+    font-weight: bolder;
+}

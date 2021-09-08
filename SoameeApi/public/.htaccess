@@ -5,6 +5,11 @@
 
     RewriteEngine On
 
+    Header always set Access-Control-Allow-Origin "*"
+    Header always set Access-Control-Max-Age "1000"
+    Header always set Access-Control-Allow-Headers "Accept, Accept-Encoding, Authorization, Content-Type, Client-Security-Token, Origin, X-Requested-With, X-Token-Auth"
+    Header always set Access-Control-Allow-Methods "GET, DELETE, PATCH, POST, PUT, OPTIONS"
+
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]

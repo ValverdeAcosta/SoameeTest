@@ -27,13 +27,7 @@ class BooksController extends Controller
     {
         $books = new Books();
 
-        $books->name = $request->name;
-
-        $books->isbn = $request->isbn;
-
-        $books->author_id = $request->author_id;
-
-        $books->save();
+        $books->storeBook($request);
     }
 
     /**

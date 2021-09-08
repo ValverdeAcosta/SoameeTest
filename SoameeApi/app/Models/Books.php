@@ -40,4 +40,19 @@ class Books extends Model
 
         return ["book" => $thisBook, "author" => $hisAuthor];
     }
+
+    public function storeBook($request)
+    {
+        $this->name = $request->name;
+
+        $this->isbn = $request->isbn;
+
+        $authorId = DB::table('authors')
+            ->where('first_name','LIKE', '%'+$request->author+'%')
+            ->pluck('id');
+
+        $this->author_id = $authorId;
+
+        $this->save();
+    }
 }
