@@ -52,7 +52,7 @@ export class BooksComponent implements OnInit {
   addBook(value:any) {
     this.httpClient.post<any>(this.apiPath+'book/', value).subscribe(
       response => {
-        console.log("hola");
+        this.showBooks();
       }
     );
   }
