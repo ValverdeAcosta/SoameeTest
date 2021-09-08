@@ -8,3 +8,11 @@
     border: solid goldenrod 1px;
     font-weight: bolder;
 }
+
+#bookForm {
+    text-align: center;
+}
+
+input {
+    border-radius: 5%;
+}

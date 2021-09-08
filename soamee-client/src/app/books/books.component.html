@@ -9,7 +9,7 @@
 
 <div id="bookList"></div>
 <div>
-    <table class="table table-hover bordered table-striped">
+    <table class="table table-hover bordered table-striped" hidden id="table1">
         <thead>
             <th scope="col">Libros</th>
         </thead>
@@ -20,7 +20,7 @@
         </tbody>
       </table>
 
-      <table class="table table-hover bordered table-striped">
+      <table class="table table-hover bordered table-striped" hidden id="table2">
           <thead>
             <th scope="col">Nombre</th>
             <th scope="col">ISBN</th>
@@ -35,20 +35,29 @@
           </tbody>
       </table>
 
-      <div class="container">
-        <form #bookForm="ngForm" (ngSubmit)="addBook(bookForm.value)" >
-            <div class="form-group">
-                <input type="text" ngModel name="name">Nombre
+      <div class="card" style="width: 18rem; display:block; margin: 0 auto;">
+        <img class="card-img-top" src="..\..\assets\book.jpg" alt="Card image cap">
+        <div class="card-body">
+            <div class="container">
+                <form #bookForm="ngForm" (ngSubmit)="addBook(bookForm.value)" id="bookForm">
+                    <div class="form-group">
+                        <label for="name">Nombre del Libro</label><br>
+                        <input type="text" ngModel name="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="isbn">ISBN</label><br>
+                        <input type="number" ngModel name="isbn">
+                    </div>
+                    <div class="form-group">
+                        <label for="autor">Autor</label><br>
+                        <input type="text" ngModel name="autor">
+                    </div>
+                    <div class="form-group">
+                        <br>
+                        <button class="btn btn-primary" style="display:block; margin: 0 auto;">Añadir</button>
+                    </div>
+                </form>
             </div>
-            <div class="form-group">
-                <input type="number" ngModel name="isbn">ISBN
-            </div>
-            <div class="form-group">
-                <input type="text" ngModel name="autor">Autor
-            </div>
-            <div class="form-group">
-                <button class="btn btn-primary">Añadir</button>
-            </div>
-        </form>
-    </div>
+        </div>
+      </div>
 </div>
