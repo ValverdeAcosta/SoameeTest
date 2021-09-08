@@ -48,10 +48,24 @@ class Books extends Model
         $this->isbn = $request->isbn;
 
         $authorId = DB::table('authors')
-            ->where('first_name','LIKE', '%'+$request->author+'%')
+            ->where('first_name','LIKE', $request->autor)
+            ->orWhere('last_name','LIKE', $request->autor)
             ->pluck('id');
 
-        $this->author_id = $authorId;
+        if(empty($authorId[0])) {
+            $parts = explode(" ", $request->autor);
+            $lastname = array_pop($parts);
+            $firstname = implode(" ", $parts);
+
+            $newAuthor = DB::insert('insert into authors (first_name,last_name) values (?, ?)', [$firstname,$lastname]);
+
+            $authorId = DB::table('authors')
+                ->where('first_name','LIKE', $firstname)
+                ->orWhere('last_name','LIKE', $lastname)
+                ->pluck('id');
+        }
+
+        $this->author_id = $authorId[0];
 
         $this->save();
     }

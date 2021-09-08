@@ -33,6 +33,9 @@ export class BooksComponent implements OnInit {
         this.books = response;
       }
     );
+
+    const table:any = document.getElementById("table1");
+    table.removeAttribute("hidden");
   }
 
   getAllDataFromBook(value:any) {
@@ -42,12 +45,14 @@ export class BooksComponent implements OnInit {
         this.authors = response.author;
       }
     );
+    const table:any = document.getElementById("table2");
+    table.removeAttribute("hidden");
   }
 
   addBook(value:any) {
     this.httpClient.post<any>(this.apiPath+'book/', value).subscribe(
       response => {
-        console.log(response);
+        console.log("hola");
       }
     );
   }
